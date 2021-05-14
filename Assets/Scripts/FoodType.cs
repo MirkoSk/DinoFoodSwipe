@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New FoodType")]
 public class FoodType : ScriptableObject
 {
-    public Image Image;
+    public Sprite Sprite;
+    public Color Tint = new Color(1,1,1,1);
     public Diet Diet;
 }

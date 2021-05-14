@@ -7,11 +7,19 @@ using UnityEngine;
 /// </summary>
 public class GameEvents
 {
-    public delegate void FeedingHandler(Diet diet);
+    public delegate void FeedingHandler(int points);
     public static event FeedingHandler FoodGiven;
 
-    public static void GiveFood(Diet diet)
+    public static void GiveFood(int points)
     {
-        FoodGiven?.Invoke(diet);
+        FoodGiven?.Invoke(points);
+    }
+
+    public delegate void ScoringHandler(int pointsTotal);
+    public static event ScoringHandler ScoreUpdated;
+
+    public static void UpdateScore(int pointsTotal)
+    {
+        ScoreUpdated?.Invoke(pointsTotal);
     }
 }

@@ -7,8 +7,11 @@ using UnityEngine.UI;
 public class Food : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [Space]
+    [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] ContactFilter2D contactFilter = new ContactFilter2D();
 
+
+    FoodType foodType;
     bool foodOnCursor;
     List<RaycastHit2D> hits = new List<RaycastHit2D>();
 
@@ -34,15 +37,27 @@ public class Food : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (hits[1].transform.tag == "Carnivore")
+        Animal animal = hits[1].transform.GetComponent<Animal>();
+        if (animal != null && animal.Diet == foodType.Diet)
         {
-            GameEvents.GiveFood(Diet.Carnivore);
+            GameEvents.GiveFood(1);
+            Destroy(gameObject);
         }
-        else if (hits[1].transform.tag == "Herbivore")
+        else if (animal != null && animal.Diet != foodType.Diet)
         {
-            GameEvents.GiveFood(Diet.Herbivore);
+            GameEvents.GiveFood(-1);
+            Destroy(gameObject);
         }
 
         foodOnCursor = false;
+    }
+
+
+
+    public void Initialize(FoodType foodType)
+    {
+        this.foodType = foodType;
+        if (foodType.Sprite != null) spriteRenderer.sprite = foodType.Sprite;
+        spriteRenderer.color = foodType.Tint;
     }
 }
