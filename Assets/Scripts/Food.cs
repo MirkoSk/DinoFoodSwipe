@@ -37,7 +37,9 @@ public class Food : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Animal animal = hits[1].transform.GetComponent<Animal>();
+        Animal animal = null;
+        if (hits.Count > 1) animal = hits[1].transform.GetComponent<Animal>();
+
         if (animal != null && animal.Diet == foodType.Diet)
         {
             GameEvents.GiveFood(1);
