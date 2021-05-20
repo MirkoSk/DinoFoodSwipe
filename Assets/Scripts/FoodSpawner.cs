@@ -16,12 +16,12 @@ public class FoodSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.ScoreUpdated += SpawnFood;
+        GameEvents.ScoringEnded += SpawnFood;
     }
 
     private void OnDisable()
     {
-        GameEvents.ScoreUpdated -= SpawnFood;
+        GameEvents.ScoringEnded -= SpawnFood;
     }
 
 

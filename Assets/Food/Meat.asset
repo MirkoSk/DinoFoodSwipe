@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2a359bf9c76f0946a25f0507c685e65, type: 3}
-  m_Name: Test
+  m_Name: Meat
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Sprite: {fileID: 21300000, guid: 4ac3bc07a4d2e1b4883528354eff72b6, type: 3}
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Diet: 0
+  Info: "... Fleisch, evolution\xE4r gesehen, die n\xE4hrstoffreichste aller Nahrungsarten
+    ist?\n\nAls erg\xE4nzendes Nahrungsmittel, etwa einmal die Woche, ist es auch
+    f\xFCr den Menschen sehr gesund."

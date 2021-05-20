@@ -7,10 +7,7 @@ using DG.Tweening;
 [RequireComponent(typeof(AudioSource))]
 public class Score : MonoBehaviour
 {
-    [Header("Answer Popups")]
-    [SerializeField] float popupDuration = 3f;
-    [SerializeField] float popupScaleDuration = 0.3f;
-    [SerializeField] Ease easingCurve = Ease.Linear;
+    [SerializeField] float scoringDuration = 5f;
 
     [Header("Particles")]
     [SerializeField] ParticleSystem rightAnswerParticles;
@@ -26,8 +23,6 @@ public class Score : MonoBehaviour
 
     [Header("References")]
     [SerializeField] TextMeshProUGUI scoreCounter;
-    [SerializeField] GameObject rightAnswerPopup;
-    [SerializeField] GameObject wrongAnswerPopup;
 
     int currentScore;
     AudioSource audioSource;
@@ -37,12 +32,6 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
-        rightAnswerPopup.SetActive(false);
-        wrongAnswerPopup.SetActive(false);
     }
 
     private void OnEnable()
@@ -57,44 +46,27 @@ public class Score : MonoBehaviour
 
 
 
-    void UpdateScore(int points)
+    void UpdateScore(int points, Animal animalFed = null, FoodType foodGiven = null)
     {
         currentScore += points;
+        scoreCounter.text = currentScore.ToString();
 
-        if (points > 0) ShowScoringPopup(true);
-        else ShowScoringPopup(false);
-
-        StartCoroutine(Wait(popupDuration, () =>
+        if (points > 0)
         {
-            rightAnswerPopup.SetActive(false);
-            wrongAnswerPopup.SetActive(false);
-
-            GameEvents.UpdateScore(currentScore);
-        }));
-    }
-
-    void ShowScoringPopup(bool rightAnswer)
-    {
-        if (rightAnswer)
-        {
-            rightAnswerPopup.SetActive(true);
-            rightAnswerPopup.transform.localScale = Vector3.zero;
-            rightAnswerPopup.transform.DOScale(1f, popupScaleDuration).SetEase(easingCurve);
-
             rightAnswerParticles.Play();
             audioSource.PlayOneShot(rightAnswerSound, rightAnswerVolume);
         }
-        else
+        else if (points < 0)
         {
-            wrongAnswerPopup.SetActive(true);
-            wrongAnswerPopup.transform.localScale = Vector3.zero;
-            wrongAnswerPopup.transform.DOScale(1f, popupScaleDuration).SetEase(easingCurve);
-
             wrongAnswerParticles.Play();
             audioSource.PlayOneShot(wrongAnswerSound, wrongAnswerVolume);
         }
 
-        scoreCounter.text = "Punkte: " + currentScore;
+
+        StartCoroutine(Wait(scoringDuration, () =>
+        {
+            GameEvents.EndScoring(currentScore);
+        }));
     }
 
 

@@ -38,16 +38,16 @@ public class Food : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         Animal animal = null;
-        if (hits.Count > 1) animal = hits[1].transform.GetComponent<Animal>();
+        if (hits.Count > 1) animal = hits[1].transform.GetComponentInParent<Animal>();
 
         if (animal != null && animal.Diet == foodType.Diet)
         {
-            GameEvents.GiveFood(1);
+            GameEvents.GiveFood(1, animal, foodType);
             Destroy(gameObject);
         }
         else if (animal != null && animal.Diet != foodType.Diet)
         {
-            GameEvents.GiveFood(-1);
+            GameEvents.GiveFood(-1, animal, foodType);
             Destroy(gameObject);
         }
 

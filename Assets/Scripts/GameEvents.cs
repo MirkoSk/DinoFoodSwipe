@@ -7,19 +7,19 @@ using UnityEngine;
 /// </summary>
 public class GameEvents
 {
-    public delegate void FeedingHandler(int points);
+    public delegate void FeedingHandler(int points, Animal animalFed, FoodType foodGiven);
     public static event FeedingHandler FoodGiven;
 
-    public static void GiveFood(int points)
+    public static void GiveFood(int points, Animal animalFed, FoodType foodGiven)
     {
-        FoodGiven?.Invoke(points);
+        FoodGiven?.Invoke(points, animalFed, foodGiven);
     }
 
     public delegate void ScoringHandler(int pointsTotal);
-    public static event ScoringHandler ScoreUpdated;
+    public static event ScoringHandler ScoringEnded;
 
-    public static void UpdateScore(int pointsTotal)
+    public static void EndScoring(int pointsTotal)
     {
-        ScoreUpdated?.Invoke(pointsTotal);
+        ScoringEnded?.Invoke(pointsTotal);
     }
 }

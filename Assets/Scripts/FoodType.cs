@@ -9,4 +9,6 @@ public class FoodType : ScriptableObject
     public Sprite Sprite;
     public Color Tint = new Color(1,1,1,1);
     public Diet Diet;
+    [TextArea(3,20)]
+    public string Info;
 }
