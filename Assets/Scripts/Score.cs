@@ -7,7 +7,8 @@ using DG.Tweening;
 [RequireComponent(typeof(AudioSource))]
 public class Score : MonoBehaviour
 {
-    [SerializeField] float scoringDuration = 5f;
+    [SerializeField] float scoringDurationRightAnswer = 5f;
+    [SerializeField] float scoringDurationWrongAnswer = 2f;
 
     [Header("Particles")]
     [SerializeField] ParticleSystem rightAnswerParticles;
@@ -55,18 +56,16 @@ public class Score : MonoBehaviour
         {
             rightAnswerParticles.Play();
             audioSource.PlayOneShot(rightAnswerSound, rightAnswerVolume);
+
+            StartCoroutine(Wait(scoringDurationRightAnswer, () => { GameEvents.EndScoring(currentScore); }));
         }
         else if (points < 0)
         {
             wrongAnswerParticles.Play();
             audioSource.PlayOneShot(wrongAnswerSound, wrongAnswerVolume);
+
+            StartCoroutine(Wait(scoringDurationWrongAnswer, () => { GameEvents.EndScoring(currentScore); }));
         }
-
-
-        StartCoroutine(Wait(scoringDuration, () =>
-        {
-            GameEvents.EndScoring(currentScore);
-        }));
     }
 
 
