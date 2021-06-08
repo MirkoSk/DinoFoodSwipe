@@ -11118,6 +11118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupScaleDuration: 0.5
   easingCurve: 30
+  showDuration: 5
   rightAnswerSpeechBubble: {fileID: 1444852056}
   wrongAnswerSpeechBubble: {fileID: 1677066053}
 --- !u!4 &676613986
@@ -11996,8 +11997,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diet: 0
+  dinoFacingLeft: 0
+  moveOutDelay: 5
+  moveOutEndValue: 10
+  moveOutDuration: 1.5
+  moveOutEase: 7
+  dinos:
+  - Name: A
+    Sprite: {fileID: 21300000, guid: 5ed6d5395c7ea684e8541f490c34bf65, type: 3}
+  - Name: B
+    Sprite: {fileID: 21300000, guid: 6ea189dbc7a47f74aa142d0e3b79231b, type: 3}
   speechBubblePosition: {fileID: 1868568149}
-  speechBubbleFacingRight: 0
+  dinoSpriteRenderer: {fileID: 1973308078}
 --- !u!1 &1338973667
 GameObject:
   m_ObjectHideFlags: 0
@@ -12749,8 +12760,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diet: 1
+  dinoFacingLeft: 1
+  moveOutDelay: 5
+  moveOutEndValue: 10
+  moveOutDuration: 1.5
+  moveOutEase: 7
+  dinos:
+  - Name: A
+    Sprite: {fileID: 21300000, guid: 6ea189dbc7a47f74aa142d0e3b79231b, type: 3}
+  - Name: B
+    Sprite: {fileID: 21300000, guid: 5ed6d5395c7ea684e8541f490c34bf65, type: 3}
   speechBubblePosition: {fileID: 1942719534}
-  speechBubbleFacingRight: 1
+  dinoSpriteRenderer: {fileID: 395411096}
 --- !u!1 &1868568148
 GameObject:
   m_ObjectHideFlags: 0

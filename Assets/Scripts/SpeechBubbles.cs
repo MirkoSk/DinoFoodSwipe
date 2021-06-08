@@ -9,6 +9,7 @@ public class SpeechBubbles : MonoBehaviour
     [Space]
     [SerializeField] float popupScaleDuration = 0.3f;
     [SerializeField] Ease easingCurve = Ease.Linear;
+    [SerializeField] float showDuration = 3f;
 
     [Header("References")]
     [SerializeField] GameObject rightAnswerSpeechBubble;
@@ -23,13 +24,11 @@ public class SpeechBubbles : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.FoodGiven += ShowSpeechBubble;
-        GameEvents.ScoringEnded += HideSpeechBubbles;
     }
 
     private void OnDisable()
     {
         GameEvents.FoodGiven -= ShowSpeechBubble;
-        GameEvents.ScoringEnded -= HideSpeechBubbles;
     }
 
     void ShowSpeechBubble(int points, Animal animalFed, FoodType foodGiven)
@@ -40,12 +39,12 @@ public class SpeechBubbles : MonoBehaviour
             rightAnswerSpeechBubble.transform.localScale = Vector3.zero;
             rightAnswerSpeechBubble.transform.position = animalFed.SpeechBubblePosition.position;
 
-            if (animalFed.SpeechBubbleFacingRight)
+            if (animalFed.DinoFacingLeft)
             {
                 rightAnswerSpeechBubble.GetComponentInChildren<TextMeshPro>().transform.localScale = new Vector3(1f, 1f, 1f);
                 rightAnswerSpeechBubble.transform.DOScale(1f, popupScaleDuration).SetEase(easingCurve);
             }
-            else if (!animalFed.SpeechBubbleFacingRight)
+            else if (!animalFed.DinoFacingLeft)
             {
                 rightAnswerSpeechBubble.GetComponentInChildren<TextMeshPro>().transform.localScale = new Vector3(-1f, 1f, 1f);
                 rightAnswerSpeechBubble.transform.DOScale(new Vector3(-1f, 1f, 1f), popupScaleDuration).SetEase(easingCurve);
@@ -57,21 +56,25 @@ public class SpeechBubbles : MonoBehaviour
             wrongAnswerSpeechBubble.transform.localScale = Vector3.zero;
             wrongAnswerSpeechBubble.transform.position = animalFed.SpeechBubblePosition.position;
 
-            if (animalFed.SpeechBubbleFacingRight)
+            if (animalFed.DinoFacingLeft)
             {
                 wrongAnswerSpeechBubble.GetComponentInChildren<TextMeshPro>().transform.localScale = new Vector3(1f, 1f, 1f);
                 wrongAnswerSpeechBubble.transform.DOScale(1f, popupScaleDuration).SetEase(easingCurve);
             }
-            else if (!animalFed.SpeechBubbleFacingRight)
+            else if (!animalFed.DinoFacingLeft)
             {
                 wrongAnswerSpeechBubble.GetComponentInChildren<TextMeshPro>().transform.localScale = new Vector3(-1f, 1f, 1f);
                 wrongAnswerSpeechBubble.transform.DOScale(new Vector3(-1f, 1f, 1f), popupScaleDuration).SetEase(easingCurve);
             }
         }
+
+        StartCoroutine(HideSpeechBubbles());
     }
 
-    void HideSpeechBubbles(int totalPoints = 0)
+    IEnumerator HideSpeechBubbles()
     {
+        yield return new WaitForSeconds(showDuration);
+
         rightAnswerSpeechBubble.SetActive(false);
         wrongAnswerSpeechBubble.SetActive(false);
     }
