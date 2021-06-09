@@ -22,4 +22,19 @@ public class GameEvents
     {
         ScoringEnded?.Invoke(pointsTotal);
     }
+
+    public delegate void DinoSwitchHandler(Animal animalSwitching);
+    public static event DinoSwitchHandler DinoRetreated;
+
+    public static void RetreatDino(Animal animalSwichting)
+    {
+        DinoRetreated?.Invoke(animalSwichting);
+    }
+
+    public static event DinoSwitchHandler DinoComingIn;
+
+    public static void MoveDinoIn(Animal animalSwitching)
+    {
+        DinoComingIn?.Invoke(animalSwitching);
+    }
 }

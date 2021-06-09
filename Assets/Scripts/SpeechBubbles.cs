@@ -9,7 +9,6 @@ public class SpeechBubbles : MonoBehaviour
     [Space]
     [SerializeField] float popupScaleDuration = 0.3f;
     [SerializeField] Ease easingCurve = Ease.Linear;
-    [SerializeField] float showDuration = 3f;
 
     [Header("References")]
     [SerializeField] GameObject rightAnswerSpeechBubble;
@@ -24,11 +23,13 @@ public class SpeechBubbles : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.FoodGiven += ShowSpeechBubble;
+        GameEvents.DinoRetreated += HideSpeechBubbles;
     }
 
     private void OnDisable()
     {
         GameEvents.FoodGiven -= ShowSpeechBubble;
+        GameEvents.DinoRetreated -= HideSpeechBubbles;
     }
 
     void ShowSpeechBubble(int points, Animal animalFed, FoodType foodGiven)
@@ -67,14 +68,10 @@ public class SpeechBubbles : MonoBehaviour
                 wrongAnswerSpeechBubble.transform.DOScale(new Vector3(-1f, 1f, 1f), popupScaleDuration).SetEase(easingCurve);
             }
         }
-
-        StartCoroutine(HideSpeechBubbles());
     }
 
-    IEnumerator HideSpeechBubbles()
+    void HideSpeechBubbles(Animal animalSwitching = null)
     {
-        yield return new WaitForSeconds(showDuration);
-
         rightAnswerSpeechBubble.SetActive(false);
         wrongAnswerSpeechBubble.SetActive(false);
     }

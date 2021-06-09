@@ -27,6 +27,7 @@ public class Animal : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform speechBubblePosition;
     [SerializeField] SpriteRenderer dinoSpriteRenderer;
+    [SerializeField] AudioSource audioSource;
 
     Dino currentDino;
 
@@ -60,6 +61,8 @@ public class Animal : MonoBehaviour
 
         if (foodGiven.Diet == diet)
         {
+            if (audioSource) audioSource.Play();
+
             SwitchAnimal();
         }
     }
@@ -80,9 +83,13 @@ public class Animal : MonoBehaviour
         if (tweenOut) tweenOutDuration = moveOutDuration;
         else tweenOutDuration = 0f;
 
-        dinoSpriteRenderer.transform.DOLocalMoveX(tweeningEndValue, tweenOutDuration).SetEase(moveOutEase).SetDelay(tweenDelay).OnComplete(() =>
+        dinoSpriteRenderer.transform.DOLocalMoveX(tweeningEndValue, tweenOutDuration).SetEase(moveOutEase).SetDelay(tweenDelay).OnStart(() => 
+        {
+            GameEvents.RetreatDino(this);
+        }).OnComplete(() =>
         {
             SwitchCurrentDino();
+            GameEvents.MoveDinoIn(this);
 
             dinoSpriteRenderer.transform.DOLocalMoveX(tweeningStart, moveOutDuration).SetEase(moveOutEase);
         });
