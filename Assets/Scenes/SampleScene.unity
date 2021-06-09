@@ -391,12 +391,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f7514e95e78c994aa8c1d38f6107575, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17dff0197c1e8ce4ea57a28e18df10c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.666667, y: 9.958333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -11963,8 +11963,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "... die Pflanzengattung Ginkgogales \r\nvermutlich die \xE4lteste noch
     lebende \r\nPflanzenart der Erde ist?\r\n \r\nFossile Funde belegen ihre Existenz\r\nbereits
-    f\xFCr das fr\xFChe Jura.\r\n\r\nDie oben abgebildete Baiera ist eine\r\nder
-    Unterarten und existierte bereits\r\nvor 208 bis 144 Millionen Jahren."
+    f\xFCr das fr\xFChe Jura.\r\n\nDie oben abgebildete Baiera ist eine der Unterarten
+    des Ginkos und existierte bereits vor 208 bis 144 Millionen Jahren."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c127049685973644a755b33fae12cf5, type: 2}
   m_sharedMaterial: {fileID: -954044959614982630, guid: 7c127049685973644a755b33fae12cf5, type: 2}
