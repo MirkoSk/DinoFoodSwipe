@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
-
+using TMPro;
 
 [System.Serializable]
 public class Dino
 {
     public string Name;
     public Sprite Sprite;
+    public Vector2 spriteOffset;
 }
 
 public class Animal : MonoBehaviour
@@ -34,11 +34,13 @@ public class Animal : MonoBehaviour
     public Diet Diet { get { return diet; } }
     public Transform SpeechBubblePosition { get => speechBubblePosition; }
     public bool DinoFacingLeft { get => dinoFacingLeft; }
+    public Dino CurrentDino { get => currentDino; }
 
 
 
     private void Start()
     {
+        SwitchCurrentDino();
         SwitchAnimal(0f, false);
     }
 
@@ -68,9 +70,7 @@ public class Animal : MonoBehaviour
     }
 
     void SwitchAnimal(float delay = -1f, bool tweenOut = true)
-    {
-        float tweeningStart = dinoSpriteRenderer.transform.localPosition.x;
-        
+    {        
         float tweeningEndValue = 0f;
         if (dinoFacingLeft) tweeningEndValue = moveOutEndValue;
         else tweeningEndValue = -moveOutEndValue;
@@ -91,7 +91,7 @@ public class Animal : MonoBehaviour
             SwitchCurrentDino();
             GameEvents.MoveDinoIn(this);
 
-            dinoSpriteRenderer.transform.DOLocalMoveX(tweeningStart, moveOutDuration).SetEase(moveOutEase);
+            dinoSpriteRenderer.transform.DOLocalMoveX(currentDino.spriteOffset.x, moveOutDuration).SetEase(moveOutEase);
         });
     }
 
@@ -99,11 +99,12 @@ public class Animal : MonoBehaviour
     {
         List<Dino> alternateDinos = new List<Dino>();
         alternateDinos.AddRange(dinos);
-        if (currentDino != null) alternateDinos.Remove(currentDino);
+        if (currentDino != null && dinos.Count > 1) alternateDinos.Remove(currentDino);
 
         Dino newDino = alternateDinos[Random.Range(0, alternateDinos.Count)];
 
         dinoSpriteRenderer.sprite = newDino.Sprite;
+        dinoSpriteRenderer.transform.localPosition = new Vector3(dinoSpriteRenderer.transform.localPosition.x, newDino.spriteOffset.y, dinoSpriteRenderer.transform.localPosition.z);
 
         currentDino = newDino;
     }

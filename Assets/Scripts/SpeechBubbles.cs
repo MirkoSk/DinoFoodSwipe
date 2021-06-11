@@ -24,12 +24,14 @@ public class SpeechBubbles : MonoBehaviour
     {
         GameEvents.FoodGiven += ShowSpeechBubble;
         GameEvents.DinoRetreated += HideSpeechBubbles;
+        GameEvents.ScoringEnded += HideSpeechBubbles;
     }
 
     private void OnDisable()
     {
         GameEvents.FoodGiven -= ShowSpeechBubble;
         GameEvents.DinoRetreated -= HideSpeechBubbles;
+        GameEvents.ScoringEnded += HideSpeechBubbles;
     }
 
     void ShowSpeechBubble(int points, Animal animalFed, FoodType foodGiven)
@@ -74,5 +76,10 @@ public class SpeechBubbles : MonoBehaviour
     {
         rightAnswerSpeechBubble.SetActive(false);
         wrongAnswerSpeechBubble.SetActive(false);
+    }
+
+    void HideSpeechBubbles(int points)
+    {
+        HideSpeechBubbles();
     }
 }

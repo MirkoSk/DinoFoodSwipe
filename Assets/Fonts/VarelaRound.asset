@@ -86,7 +86,7 @@ Material:
     - _UnderlayDilate: 0
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
+    - _UnderlaySoftness: 0.5
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: VarelaRound-Regular SDF
+  m_Name: VarelaRound
   m_EditorClassIdentifier: 
-  hashCode: -1794847063
+  hashCode: 1586151855
   material: {fileID: -954044959614982630}
-  materialHashCode: 1699882217
+  materialHashCode: -56237777
   m_Version: 1.1.0
   m_SourceFontFileGUID: edca2dae4adab5240ae3798a06fd381e
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: edca2dae4adab5240ae3798a06fd381e, type: 3}
