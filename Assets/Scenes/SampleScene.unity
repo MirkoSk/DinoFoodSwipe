@@ -11874,6 +11874,8 @@ MonoBehaviour:
   foods:
   - {fileID: 11400000, guid: 2f45eb338d181b34d8e6943783ccb29e, type: 2}
   - {fileID: 11400000, guid: e0da0d722c46a8140a64b37d69f4e0f3, type: 2}
+  - {fileID: 11400000, guid: 0e7244c6375c4ff49a543bef9806430e, type: 2}
+  - {fileID: 11400000, guid: 0c1aacef523e53140a831a93f66053c5, type: 2}
   foodPrefab: {fileID: 6781784081350604167, guid: 602d8690de25cbc47b7e0a3815e28dc9, type: 3}
 --- !u!82 &932284640
 AudioSource:
@@ -12598,6 +12600,9 @@ MonoBehaviour:
   dinos:
   - Name: Carnotaurus
     Sprite: {fileID: 21300000, guid: 5ed6d5395c7ea684e8541f490c34bf65, type: 3}
+    spriteOffset: {x: -3.33, y: -0.54}
+  - Name: Carnotaurus
+    Sprite: {fileID: 21300000, guid: 08a5e2cc6c002b04bab3236c168ee187, type: 3}
     spriteOffset: {x: -3.33, y: -0.54}
   speechBubblePosition: {fileID: 1868568149}
   dinoSpriteRenderer: {fileID: 1973308078}

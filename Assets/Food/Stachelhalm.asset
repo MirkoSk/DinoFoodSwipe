@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a359bf9c76f0946a25f0507c685e65, type: 3}
+  m_Name: Stachelhalm
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 670d8f7cc43700b44bd83285aa16a016, type: 3}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Diet: 1
+  Info: "... es Stachelhalme immernoch gibt? Sie werden als \"Lebendes Fossil\" bezeichnet.\n
+    \r\nSie sind sehr ausdauernde Pflanzen und erreichen heute nur noch eine maximale
+    H\xF6he von 2 Metern bis 6 Metern.\n\r\nFossilien aus dem Perm (Zeitepoche) belegen,
+    dass sie fr\xFCher eine beeindruckende Wuchsh\xF6he von bis zu 30 Metern erreichten."
